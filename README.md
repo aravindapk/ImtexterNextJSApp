@@ -16,7 +16,7 @@ Text Analyzer Features
 - Valid messages for invalid input fields in case you mistakenly entered invalid urls.
 
 
-  Technical Highlights
+Technical Highlights
   - NextJs client and server components having data fetch using all new .net core 8 web API
   - Used NextJs 14.1.4
   - Next js App Router
