@@ -48,7 +48,7 @@ const TextAnalyzer: React.FC = React.memo(() => {
                 setLoading(false);
             }
         else {
-            setStatusMessage('Please enter valid URL')
+            setStatusMessage('Please enter valid URL!')
         }
         
     }
