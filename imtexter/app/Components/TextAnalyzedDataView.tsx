@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextAnalyzerData } from '../TextAnalyzer/TextAnalyzedData'
+import { TextAnalyzerData } from '../TextAnalyzer/textAnalyzedData'
 
 interface TextAnalzerProps {
     dataAnalyzer : TextAnalyzerData

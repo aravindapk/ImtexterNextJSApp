@@ -2,14 +2,14 @@
 import React, { useRef, useState } from 'react';
 import Loader from '../Components/Loader';
 import { clearImageCache } from '../lib/DataFetch/clearRefrechImages';
-import { TextAnalyzerData} from './TextAnalyzedData';
 import TextAnalyzedDataView from '../Components/TextAnalyzedDataView';
 import { getAnalyzedTextData } from '../lib/DataFetch/analyzeText';
 import { sanitizeUserInput } from '../Components/SanitizeUserInput';
 import validator from 'validator'
 import StatusMessage from '../Components/StatusMessage';
-import { applyPrevCusrorPointer } from '../lib/Utils/CursorCurator';
 import { TextAnalyzerRequest } from './textAnalyzerRequest';
+import { TextAnalyzerData } from './textAnalyzedData';
+import { applyPrevCusrorPointer } from '../lib/Utils/cursorCurator';
 
 const TextAnalyzer: React.FC = React.memo(() => {
     const initialState: TextAnalyzerData = {

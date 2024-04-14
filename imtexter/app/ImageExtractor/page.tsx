@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react';
-import { Photo, Photos } from './Photos';
+import React, {useRef, useState } from 'react';
+import { Photos } from './Photos';
 import { getImages } from '../lib/DataFetch/fetchImage';
 import PhotoGallery from '../Components/PhotoGallery';
 import Loader from '../Components/Loader';
@@ -8,7 +8,8 @@ import { clearImageCache } from '../lib/DataFetch/clearRefrechImages';
 import { sanitizeUserInput } from '../Components/SanitizeUserInput';
 import validator from 'validator';
 import StatusMessage from '../Components/StatusMessage';
-import { applyPrevCusrorPointer } from '../lib/Utils/CursorCurator';
+import { applyPrevCusrorPointer } from '../lib/Utils/cursorCurator';
+import Dropdown from '../Components/DropDown';
 
 let defaultPhoto : Photos ={
     imageCount : 0,
@@ -21,10 +22,11 @@ const ImageExtractor: React.FC = () => {
   const [images , setImages] =useState<Photos>(defaultPhoto);
   const [loading, setLoading] = useState(false);
   const [loadMoreVisible, setLoadMoreVisible] = useState<boolean>(false);
-  const [visibleItemCount, setVisibleItemCount] = useState<number>(12);
+  const [visibleItemCount, setVisibleItemCount] = useState<number>(10);
   const [buttonDisabled, setButtonDisabled] = useState(true); 
   const [statusMessage, setStatusMessage] = useState('');
   const [refreshButtonText, setRefreshButtonText] = useState('Refresh');
+  const [perPage, setPerPage] = useState(10);
   const inputRef = useRef(null);
 
   let enabledClassName = "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded";
@@ -39,8 +41,8 @@ const ImageExtractor: React.FC = () => {
                 setLoading(true);
                 const data = await getImages(htmlUrl);  
                 setImages(data);
-                setVisibleItemCount(12);
-                if(data.imageCount > 12)
+                setVisibleItemCount(perPage);
+                if(data.imageCount > perPage)
                     {
                         setLoadMoreVisible(true);
                     }
@@ -74,9 +76,12 @@ const ImageExtractor: React.FC = () => {
         applyPrevCusrorPointer(previousCursorPosition, inputRef);
     };
     const handleLoadMore = () => {
-        setVisibleItemCount((prevCount) => prevCount + 10);
+        setVisibleItemCount((prevCount) => prevCount + perPage);
       };       
-      
+      const handlePerPageChange = (value: number) => {
+        setPerPage(value);
+        setVisibleItemCount((prevCount) => prevCount + perPage);
+      };
   return (
     <div className="container mx-auto mt-8">
       <div className="flex justify-center mb-4">
@@ -103,6 +108,11 @@ const ImageExtractor: React.FC = () => {
       ) : (
         <>
             <div className='pt-3 pb-3'>Total Images Fetched: {images.imageCount}</div>
+           {images.imageCount > 0 &&  <Dropdown
+              options={[10, 15, 20, 25, 30, 50]}
+              value={perPage}
+              onChange={handlePerPageChange}
+            /> }  
             <PhotoGallery dataStatus={images.status} dataImages={images.items.slice(0, visibleItemCount)}/>
         </>
       )

@@ -1,6 +1,6 @@
 'use server'
 
-import { TextAnalyzerData } from "@/app/TextAnalyzer/TextAnalyzedData";
+import { TextAnalyzerData } from "@/app/TextAnalyzer/textAnalyzedData";
 import { TextAnalyzerRequest } from "@/app/TextAnalyzer/textAnalyzerRequest";
 
 let initialData: TextAnalyzerData = {
