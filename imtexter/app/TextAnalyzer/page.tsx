@@ -50,7 +50,6 @@ const TextAnalyzer: React.FC = React.memo(() => {
         else {
             setStatusMessage('Please enter valid URL!')
         }
-        
     }
   };
 
@@ -75,7 +74,6 @@ const TextAnalyzer: React.FC = React.memo(() => {
         setRefreshButtonText('Refresh');
         applyPrevCusrorPointer(previousCursorPosition, inputRef);
     };
-
    
     const handleExcludedValueChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const previousCursorPosition = e.target.selectionStart;
