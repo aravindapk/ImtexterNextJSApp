@@ -54,7 +54,6 @@ const ImageExtractor: React.FC = () => {
             }
     }
   };
-
   const handlerefreshButton = async () => {
     setImages(defaultPhoto);
     setRefreshButtonText('Clearing Images..');

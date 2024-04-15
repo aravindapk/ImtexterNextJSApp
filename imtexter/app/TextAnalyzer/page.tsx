@@ -82,43 +82,53 @@ const TextAnalyzer: React.FC = React.memo(() => {
         applyPrevCusrorPointer(previousCursorPosition, inputRefExclude);
     };
   return (
-    <div className="container mx-auto mt-8">
-      <div className="flex justify-center mb-4">
-        <input
-          type="text"
-          ref={inputRef} 
-          id="htmlUrlInputText"
-          className="border border-gray-300 rounded px-4 py-2 mr-2"
-          placeholder="Enter Web URL..."
-          value={htmlUrl}
-          onChange={handleInputValueChange}
-        />
-        <input
-          type="text"
-          ref={inputRefExclude} 
-          id="excludedWordText"
-          className="border border-gray-300 rounded px-4 py-2 mr-2"
-          placeholder="Enter Words to exclude with comma seperated"
-          value={excludedWords}
-          onChange={handleExcludedValueChange}
-        />
-        <button
-          className= {buttonDisabled ? disabledClassName : enabledClassName}
-          onClick={handleTextAnalyze} disabled={!htmlUrl.trim()}
-        >
-          Analyze Text
-        </button>
-        <button type="button" disabled={!htmlUrl.trim()} onClick={handlerefreshButton}
-        className={buttonDisabled ? disabledRefreshClass : enabledRefreshClass}>{refreshButtonText}</button>
-            <StatusMessage statusMessage={statusMessage} statClassName="pt-3 text-red-600" />
-      </div>
-      {loading ? (
-        <Loader />
-      ) : (
-        analyzedData && <TextAnalyzedDataView dataAnalyzer={analyzedData}/>
-      )
-    }
-    </div>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <div className="flex flex-col sm:flex-row justify-center mb-4 space-y-4 sm:space-y-0 sm:space-x-4">
+                <input
+                    type="text"
+                    ref={inputRef} 
+                    id="htmlUrlInputText"
+                    className="flex-1 border border-gray-300 rounded px-2 py-2"
+                    placeholder="Enter Web URL..."
+                    value={htmlUrl}
+                    onChange={handleInputValueChange}
+                />
+                <input
+                    type="text"
+                    ref={inputRefExclude} 
+                    id="excludedWordText"
+                    className="flex-1 border border-gray-300 rounded px-2 py-2"
+                    placeholder="Enter Words to exclude with comma separated"
+                    value={excludedWords}
+                    onChange={handleExcludedValueChange}
+                />
+                <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400"
+                    onClick={handleTextAnalyze} 
+                    disabled={buttonDisabled}
+                >
+                    Analyze Text
+                </button>
+                <button 
+                    type="button" 
+                    onClick={handlerefreshButton}
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded disabled:bg-gray-400"
+                    disabled={buttonDisabled}
+                >
+                    Refresh
+                </button>
+            </div>
+            {statusMessage && (
+                <StatusMessage statusMessage={statusMessage} statClassName="pt-3 text-red-600" />
+            )}
+            {loading ? (
+                <Loader />
+            ) : (
+                analyzedData && (
+                    <TextAnalyzedDataView dataAnalyzer={analyzedData}/>
+                )
+            )}
+        </div>
   );
 });
 
