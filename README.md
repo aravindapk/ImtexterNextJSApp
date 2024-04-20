@@ -1,5 +1,7 @@
 This App developed using Nexj JS 14.1.4 with typescript and tailwind CSS. 
+ -- You can see some visual guides in the Wiki page
 
+ 
 Key Features of Image Extractor.
 - You supply valid URL in the input box, it will extract images and display as a gallery to you.
 - Ability to store the browsed urls and fetches the data instantly through the use of caching.
