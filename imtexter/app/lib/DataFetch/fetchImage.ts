@@ -7,9 +7,10 @@ let defaultPhoto : Photos ={
     status : 'Something Went wrong please try again later.'
 }
 
+const imageApiUrl = process.env.Image_Extractor_Api_Url;
 export async function getImages (htmlUrl: string) {
     try{
-        let response = await fetch(`https://imagetextapi.azurewebsites.net/api/ImageExtractor/ExtractImages?url=${htmlUrl}`)
+        let response = await fetch(`${imageApiUrl}${htmlUrl}`)
         if(response.ok){
             let photos : Photos = await response.json();
             return photos;

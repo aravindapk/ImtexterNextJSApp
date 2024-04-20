@@ -8,9 +8,11 @@ let initialData: TextAnalyzerData = {
     topWords: [],
     dataFetchStatus: 'ok',
 };
+
+const textAnalyzeApiUrl = process.env.Text_Analyze_Api_Url;
 export async function getAnalyzedTextData (textRequestData: TextAnalyzerRequest) {
     try {
-        const response = await fetch('https://imagetextapi.azurewebsites.net/api/TextAnalyzer/AnalyzeTextFromHtmlDocument',{
+        const response = await fetch(`${textAnalyzeApiUrl}`,{
           method: 'POST',
           body: JSON.stringify(textRequestData),
           headers: {
