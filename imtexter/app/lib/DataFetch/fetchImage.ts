@@ -9,7 +9,7 @@ let defaultPhoto : Photos ={
 
 export async function getImages (htmlUrl: string) {
     try{
-        let response = await fetch(`http://phototextapi/api/ImageExtractor/ExtractImages?url=${htmlUrl}`)
+        let response = await fetch(`https://imagetextapi.azurewebsites.net/api/ImageExtractor/ExtractImages?url=${htmlUrl}`)
         if(response.ok){
             let photos : Photos = await response.json();
             return photos;
