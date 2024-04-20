@@ -10,7 +10,7 @@ let initialData: TextAnalyzerData = {
 };
 export async function getAnalyzedTextData (textRequestData: TextAnalyzerRequest) {
     try {
-        const response = await fetch('http://phototextapi/api/TextAnalyzer/AnalyzeTextFromHtmlDocument',{
+        const response = await fetch('https://imagetextapi.azurewebsites.net/api/TextAnalyzer/AnalyzeTextFromHtmlDocument',{
           method: 'POST',
           body: JSON.stringify(textRequestData),
           headers: {
