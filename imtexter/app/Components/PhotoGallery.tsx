@@ -16,7 +16,7 @@ const PhotoGallery : React.FC<ImageGalleryProps> = ({dataImages, dataStatus}) =>
                     {
                        dataImages.map((image) => (
                         <div key={image.name} className="relative">
-                          <img src={image.src} alt={`Image ${image.name}`} width={300} height={200}
+                          <img src={image.src} alt={`Image ${image.name}`} width="auto" height="auto"
                           className="rounded-lg transition duration-300 transform hover:scale-105"/>
                           <div className="absolute inset-0 bg-cyan-200 opacity-0 hover:opacity-50 transition duration-300 rounded-lg"></div>
                         </div>
